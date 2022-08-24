@@ -82,7 +82,7 @@ export class HelloCdkStack extends cdk.Stack {
 
         // Output the screenshots URL
         new CfnOutput(this, "apiUrl", {
-            value: httpApi.url + "/screenshots" || "n/a",
+            value: httpApi.url + "screenshots" || "n/a",
         });
     }
 }
