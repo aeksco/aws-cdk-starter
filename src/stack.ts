@@ -30,7 +30,7 @@ export class HelloCdkStack extends cdk.Stack {
         const webScraperLambda = new lambda.Function(this, "webScraperLambda", {
             code: new lambda.AssetCode("src/web-scraper"),
             handler: "lambda.handler",
-            runtime: lambda.Runtime.NODEJS_16_X,
+            runtime: lambda.Runtime.NODEJS_12_X,
             timeout: cdk.Duration.seconds(300),
             memorySize: 1024,
             environment: {
@@ -44,7 +44,7 @@ export class HelloCdkStack extends cdk.Stack {
         // // // //
         // Setup cron schedule trigger for webScraperLambda
         const rule = new events.Rule(this, "hello-cdk-event-rule", {
-            schedule: events.Schedule.expression("rate(1 minutes)"),
+            schedule: events.Schedule.expression("rate(1 minute)"),
         });
 
         // Adds webScraperLambda as target for scheduled rule

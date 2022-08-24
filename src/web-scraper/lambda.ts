@@ -26,8 +26,7 @@ export const handler = async (
     console.log(event);
 
     // Defines the start URL for the script
-    const url =
-        "https://www.bestbuy.com/site/sony-playstation-5-digital-edition-console/6430161.p?skuId=6430161";
+    const url = "https://google.com";
 
     // Log URL
     console.log("Start URL:");

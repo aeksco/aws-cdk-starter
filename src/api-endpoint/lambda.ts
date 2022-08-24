@@ -14,7 +14,7 @@ export const handler = async (
 
     try {
         // Read contents of S3_BUCKET
-        const items = s3
+        const items = await s3
             .listObjects({
                 Bucket: S3_BUCKET_NAME,
             })
@@ -24,11 +24,16 @@ export const handler = async (
         console.log("items from S3!");
         console.log(items);
 
+        // Construct JSON response
+        const response = items.Contents?.map((c) => {
+            return { key: c.Key };
+        });
+
         // Logs "shutdown" statement
         console.log("api-endpoint -> shutdown");
 
-        // Return items as JSON
-        return context.succeed({ status: "Great success!" });
+        // Return JSON items
+        return context.succeed({ items: response });
     } catch (error) {
         return context.fail(error);
     } finally {
