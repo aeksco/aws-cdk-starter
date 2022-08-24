@@ -67,7 +67,7 @@ export const handler = async (
         await new Promise((resolve, reject) => {
             s3.upload({
                 Bucket: S3_BUCKET_NAME,
-                Key: screenshotFilepath,
+                Key: screenshotFilepath.replace("/tmp/", ""), // Remove /tmp/ from S3 object key
                 Body: fs.readFileSync(screenshotFilepath),
             }).send((err) => {
                 // Logs + rejects error
