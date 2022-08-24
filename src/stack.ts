@@ -61,8 +61,8 @@ export class HelloCdkStack extends cdk.Stack {
             },
         });
 
-        // Grant permissions for apiEndpointLambda to have read/write access to screenshotsBucket
-        screenshotsBucket.grantReadWrite(apiEndpointLambda);
+        // Grant permissions for apiEndpointLambda to have read access to screenshotsBucket
+        screenshotsBucket.grantRead(apiEndpointLambda);
 
         // Setup integration to connect api-endpoint lambda to API Gateway
         const endpointIntegration = new HttpLambdaIntegration(
@@ -80,6 +80,7 @@ export class HelloCdkStack extends cdk.Stack {
             integration: endpointIntegration,
         });
 
+        // // // // //
         // Output the screenshots URL
         new CfnOutput(this, "apiUrl", {
             value: httpApi.url + "screenshots" || "n/a",
